@@ -1,3 +1,4 @@
 pandas==1.5.2
 matplotlib-inline==0.1.6
 seaborn==0.12.2
+opencv-python==4.7.0.68
