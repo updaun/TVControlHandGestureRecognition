@@ -24,7 +24,7 @@ SUBMIT_PATH = os.path.join(CFG['WORKING_DIR'], 'submit/')
 # -- data_loader
 df = pd.read_csv(TRAIN_CSV_PATH)
 df['path'] = df['path'].apply(lambda x : os.path.join(DATASET_PATH, x))
-train_loader, val_loader = split_load_train_val(df, CFG['VAL_RATIO'])
+train_loader, val_loader = split_load_train_val(df)
 
 test_df = pd.read_csv(TEST_CSV_PATH)
 test_df['path'] = test_df['path'].apply(lambda x : os.path.join(DATASET_PATH, x))

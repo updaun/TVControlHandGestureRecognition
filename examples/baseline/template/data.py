@@ -35,8 +35,8 @@ class CustomDataset(Dataset):
             frames.append(img)
         return torch.FloatTensor(np.array(frames)).permute(3, 0, 1, 2)
 
-def split_train_val(df, val_ratio):
-    train, val, _, _ = train_test_split(df, df['label'], test_size=val_ratio, random_state=CFG['SEED'])
+def split_train_val(df):
+    train, val, _, _ = train_test_split(df, df['label'], test_size=CFG['VAL_RATIO'], random_state=CFG['SEED'])
 
     return train, val
 
@@ -50,8 +50,8 @@ def load_data(data, shuffle=False, test_mode=False):
 
     return dataloader
 
-def split_load_train_val(df, val_ratio):
-    train, val = split_train_val(df, val_ratio)
+def split_load_train_val(df):
+    train, val = split_train_val(df)
 
     train_loader = load_data(train, shuffle=True)
     val_loader = load_data(val)
