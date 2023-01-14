@@ -19,6 +19,9 @@ if __name__ == "__main__":
     import os
     import pandas as pd
 
+    import torch.nn as nn
+    from torchvision import models
+
     from data import load_data
     from model import BaseModel
     from config import CFG
@@ -35,8 +38,14 @@ if __name__ == "__main__":
     test_loader = load_data(test_df, test_mode=True)
 
     # -- model
-    model = BaseModel()
-    weights_path = os.path.join('./weights', CFG['WEIGHTS'])
+    if CFG['MODEL'] == 'baseline':
+        model = BaseModel()
+    elif CFG['MODEL'] == 'resnet3d18':
+        # model = models.video.r3d_18(pretrained=True)
+        model = models.video.r3d_18(weights='R3D_18_Weights.DEFAULT')
+        num_features = model.fc.in_features
+        model.fc = nn.Linear(num_features, 5)
+    weights_path = os.path.join(f'./weights/{CFG["MODEL"]}', CFG['WEIGHTS'])
     model.load_state_dict(torch.load(weights_path, map_location=device))
 
     # -- inference
@@ -45,4 +54,4 @@ if __name__ == "__main__":
     # -- submit
     submit = pd.read_csv(os.path.join(DATASET_PATH, 'sample_submission.csv'))
     submit['label'] = preds
-    submit.to_csv(os.path.join(SUBMIT_PATH, 'submit.csv'), index=False)
+    submit.to_csv(os.path.join(SUBMIT_PATH, f'{CFG["MODEL"]}_submit.csv'), index=False)

@@ -1,4 +1,5 @@
 CFG = {
+    'MODEL': 'resnet3d18', # baseline, resnet3d18
     'FPS':30,
     'IMG_SIZE':160,
     'EPOCHS':20,
