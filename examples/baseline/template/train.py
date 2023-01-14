@@ -45,8 +45,8 @@ def train(model, train_loader, val_loader, device):
         if scheduler is not None:
             scheduler.step(_val_score)
             
-        if best_val_score < _val_score:
-            torch.save(model.state_dict(), 'weights/best.pth')
+        if best_val_score <= _val_score:
+            torch.save(model.state_dict(), f'weights/best_epoch{epoch}_{_val_loss:.4f}.pth')
             best_val_score = _val_score
             best_model = model
     
