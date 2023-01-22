@@ -171,10 +171,7 @@ poetry.toml
 # End of https://www.toptal.com/developers/gitignore/api/python
 
 dataset/
-<<<<<<< HEAD
 
 models/
-=======
 submit/
 *.pth
->>>>>>> 34f11e757c28d66681c5a36e5524fdb8ea4bf7bf
