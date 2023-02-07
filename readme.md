@@ -5,6 +5,10 @@
 ```
 .
 |-- dataset
+|   |-- finger_language
+|   |   |-- train
+|   |   |   `-- person_id/camera_id/lables.mov
+|   |   `-- train.csv
 |   |-- sample_submission.csv
 |   |-- test
 |   |   `-- TEST_000~152.mp4

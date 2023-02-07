@@ -1,2 +1,3 @@
 - `EDA`: 데이터 분석
 - `baseline`: 베이스라인 코드
+- `finger_language`: 지화 데이터 관련 코드
